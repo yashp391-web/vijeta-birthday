@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,6 +21,26 @@ body{
 background:linear-gradient(135deg,#ff758c,#ff7eb3);
 color:white;
 scroll-behavior:smooth;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,0.35);
+padding:15px;
+text-align:center;
+z-index:1000;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
 }
 
 /* HERO */
@@ -31,10 +52,11 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:20px;
 }
 
 .hero h1{
-font-size:60px;
+font-size:65px;
 }
 
 .hero p{
@@ -42,25 +64,12 @@ font-size:22px;
 margin-top:10px;
 }
 
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(0,0,0,0.3);
-padding:15px;
-text-align:center;
+.counter{
+font-size:35px;
+margin-top:20px;
 }
 
-nav a{
-color:white;
-margin:0 15px;
-text-decoration:none;
-font-weight:bold;
-}
-
-/* SECTIONS */
+/* SECTION */
 
 .section{
 padding:100px 20px;
@@ -71,10 +80,24 @@ text-align:center;
 
 .section h2{
 font-size:40px;
-margin-bottom:30px;
+margin-bottom:25px;
 }
 
-/* PHOTOS */
+/* TIMELINE */
+
+.timeline{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.event{
+background:rgba(255,255,255,0.2);
+padding:20px;
+border-radius:15px;
+}
+
+/* GALLERY */
 
 .gallery{
 display:grid;
@@ -85,7 +108,7 @@ margin-top:30px;
 
 .photo{
 height:200px;
-background:#ffffff40;
+background:rgba(255,255,255,0.35);
 border-radius:15px;
 display:flex;
 align-items:center;
@@ -93,14 +116,20 @@ justify-content:center;
 font-size:18px;
 }
 
-/* COUNTER */
+/* SLIDESHOW */
 
-.counter{
-font-size:35px;
-margin-top:20px;
+.slideshow{
+max-width:600px;
+margin:auto;
 }
 
-/* ANIMATION */
+.slide{
+width:100%;
+display:none;
+border-radius:15px;
+}
+
+/* FADE ANIMATION */
 
 .fade{
 opacity:0;
@@ -113,6 +142,36 @@ opacity:1;
 transform:translateY(0);
 }
 
+/* HEARTS */
+
+#hearts{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+pointer-events:none;
+overflow:hidden;
+}
+
+.heart{
+position:absolute;
+color:white;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
 </style>
 
 </head>
@@ -120,15 +179,19 @@ transform:translateY(0);
 <body>
 
 <nav>
-<a href="#story">Our Story</a>
+<a href="#story">Story</a>
+<a href="#timeline">Timeline</a>
 <a href="#trips">Trips</a>
-<a href="#love">Why I Love You</a>
+<a href="#love">Love</a>
 <a href="#letter">Message</a>
 </nav>
+
+<div id="hearts"></div>
 
 <!-- HERO -->
 
 <section class="hero">
+
 <h1>Yash ❤️ Vijeta</h1>
 <p>A story that started with one text</p>
 
@@ -144,10 +207,46 @@ transform:translateY(0);
 
 <p>
 It all started with a simple text.  
-Nothing dramatic.  
-Nothing planned.  
-But somehow that one message turned into late night conversations, laughter, memories, and eventually a lifetime journey together.
+One message that turned into conversations, laughter,
+memories, and eventually a journey together.
 </p>
+
+</section>
+
+<!-- TIMELINE -->
+
+<section id="timeline" class="section fade">
+
+<h2>Our Timeline</h2>
+
+<div class="timeline">
+
+<div class="event">
+<h3>The First Text</h3>
+<p>The message that started everything.</p>
+</div>
+
+<div class="event">
+<h3>Goa Trip</h3>
+<p>Our first adventure together.</p>
+</div>
+
+<div class="event">
+<h3>Bali</h3>
+<p>Beautiful sunsets and peaceful moments.</p>
+</div>
+
+<div class="event">
+<h3>Thailand</h3>
+<p>Crazy fun and unforgettable memories.</p>
+</div>
+
+<div class="event">
+<h3>The Future</h3>
+<p>Many more adventures waiting for us.</p>
+</div>
+
+</div>
 
 </section>
 
@@ -158,20 +257,23 @@ But somehow that one message turned into late night conversations, laughter, mem
 <h2>Our Adventures</h2>
 
 <h3>Goa</h3>
+
 <div class="gallery">
 <div class="photo">Goa Photo</div>
 <div class="photo">Goa Photo</div>
 <div class="photo">Goa Photo</div>
 </div>
 
-<h3 style="margin-top:40px">Bali</h3>
-<div class="gallery">
-<div class="photo">Bali Photo</div>
-<div class="photo">Bali Photo</div>
-<div class="photo">Bali Photo</div>
+<h3 style="margin-top:40px">Bali Slideshow</h3>
+
+<div class="slideshow">
+<img class="slide" src="photo1.jpg">
+<img class="slide" src="photo2.jpg">
+<img class="slide" src="photo3.jpg">
 </div>
 
 <h3 style="margin-top:40px">Thailand</h3>
+
 <div class="gallery">
 <div class="photo">Thailand Photo</div>
 <div class="photo">Thailand Photo</div>
@@ -203,15 +305,16 @@ But somehow that one message turned into late night conversations, laughter, mem
 <p>
 Vijeta,  
 I may not always be the perfect husband.  
-I may annoy you sometimes and make bad jokes.  
-But one thing will always be true —  
+But one thing will always be true —
 I will always try to be better for you.
 </p>
 
 <br>
 
 <p>
-Thank you for being my partner, my best friend, and the person I want to travel the world with.
+Thank you for being my partner,
+my best friend,
+and the person I want to travel the world with.
 </p>
 
 <br>
@@ -230,7 +333,7 @@ const today = new Date()
 
 const diff = today - startDate
 
-const days = Math.floor(diff / (1000*60*60*24))
+const days = Math.floor(diff/(1000*60*60*24))
 
 document.getElementById("loveCounter").innerText =
 days + " days of us ❤️"
@@ -250,7 +353,58 @@ entry.target.classList.add("show")
 
 faders.forEach(el=>observer.observe(el))
 
+
+/* FLOATING HEARTS */
+
+function createHeart(){
+
+const heart = document.createElement("div")
+
+heart.classList.add("heart")
+
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.fontSize=(Math.random()*20+10)+"px"
+
+heart.style.animationDuration=(Math.random()*3+3)+"s"
+
+document.getElementById("hearts").appendChild(heart)
+
+setTimeout(()=>heart.remove(),6000)
+
+}
+
+setInterval(createHeart,300)
+
+
+/* SLIDESHOW */
+
+let slideIndex=0
+
+function showSlides(){
+
+let slides=document.querySelectorAll(".slide")
+
+slides.forEach(s=>s.style.display="none")
+
+slideIndex++
+
+if(slideIndex>slides.length){
+slideIndex=1
+}
+
+slides[slideIndex-1].style.display="block"
+
+setTimeout(showSlides,3000)
+
+}
+
+showSlides()
+
 </script>
 
 </body>
+
 </html>
