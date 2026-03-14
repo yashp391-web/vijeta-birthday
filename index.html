@@ -1,35 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Yash ❤️ Vijeta</title>
 
 <style>
 
-body{
-font-family: Arial;
-text-align:center;
-background:#ffe6f0;
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
 }
+
+body{
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+color:white;
+scroll-behavior:smooth;
+}
+
+/* HERO */
 
 .hero{
-padding:100px;
-background:#ff4d6d;
-color:white;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
 }
+
+.hero h1{
+font-size:60px;
+}
+
+.hero p{
+font-size:22px;
+margin-top:10px;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(0,0,0,0.3);
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:0 15px;
+text-decoration:none;
+font-weight:bold;
+}
+
+/* SECTIONS */
 
 .section{
-padding:60px;
+padding:100px 20px;
+max-width:900px;
+margin:auto;
+text-align:center;
 }
 
-h1{
-font-size:50px;
+.section h2{
+font-size:40px;
+margin-bottom:30px;
 }
 
-img{
-width:300px;
+/* PHOTOS */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:30px;
+}
+
+.photo{
+height:200px;
+background:#ffffff40;
 border-radius:15px;
-margin:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+}
+
+/* COUNTER */
+
+.counter{
+font-size:35px;
+margin-top:20px;
+}
+
+/* ANIMATION */
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:all 1s;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
@@ -38,42 +119,138 @@ margin:10px;
 
 <body>
 
-<div class="hero">
+<nav>
+<a href="#story">Our Story</a>
+<a href="#trips">Trips</a>
+<a href="#love">Why I Love You</a>
+<a href="#letter">Message</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
 <h1>Yash ❤️ Vijeta</h1>
-<p>A story that started with a text</p>
-</div>
+<p>A story that started with one text</p>
 
-<div class="section">
+<div class="counter" id="loveCounter"></div>
+
+</section>
+
+<!-- STORY -->
+
+<section id="story" class="section fade">
+
 <h2>How We Met</h2>
-<p>It all started with a simple text that changed everything.</p>
-</div>
 
-<div class="section">
+<p>
+It all started with a simple text.  
+Nothing dramatic.  
+Nothing planned.  
+But somehow that one message turned into late night conversations, laughter, memories, and eventually a lifetime journey together.
+</p>
+
+</section>
+
+<!-- TRIPS -->
+
+<section id="trips" class="section fade">
+
 <h2>Our Adventures</h2>
 
 <h3>Goa</h3>
-<p>Beaches, chaos and memories.</p>
-
-<h3>Bali</h3>
-<p>Sunsets and peaceful moments together.</p>
-
-<h3>Thailand</h3>
-<p>Crazy fun and unforgettable adventures.</p>
-
+<div class="gallery">
+<div class="photo">Goa Photo</div>
+<div class="photo">Goa Photo</div>
+<div class="photo">Goa Photo</div>
 </div>
 
-<div class="section">
+<h3 style="margin-top:40px">Bali</h3>
+<div class="gallery">
+<div class="photo">Bali Photo</div>
+<div class="photo">Bali Photo</div>
+<div class="photo">Bali Photo</div>
+</div>
+
+<h3 style="margin-top:40px">Thailand</h3>
+<div class="gallery">
+<div class="photo">Thailand Photo</div>
+<div class="photo">Thailand Photo</div>
+<div class="photo">Thailand Photo</div>
+</div>
+
+</section>
+
+<!-- LOVE -->
+
+<section id="love" class="section fade">
+
+<h2>Why I Love You</h2>
+
+<p>You make ordinary days special.</p>
+<p>You support my crazy ideas.</p>
+<p>You laugh at my stupid jokes.</p>
+<p>You are my favorite travel partner.</p>
+<p>You make life better just by being in it.</p>
+
+</section>
+
+<!-- LETTER -->
+
+<section id="letter" class="section fade">
+
 <h2>A Message For You</h2>
 
 <p>
 Vijeta,  
-Thank you for being my partner in every adventure.  
-No matter where life takes us, I will always try to be better for you.  
+I may not always be the perfect husband.  
+I may annoy you sometimes and make bad jokes.  
+But one thing will always be true —  
+I will always try to be better for you.
 </p>
 
-<p>Happy Birthday ❤️</p>
+<br>
 
-</div>
+<p>
+Thank you for being my partner, my best friend, and the person I want to travel the world with.
+</p>
+
+<br>
+
+<h3>Happy Birthday ❤️</h3>
+
+</section>
+
+<script>
+
+/* LOVE COUNTER */
+
+const startDate = new Date("2022-01-01")
+
+const today = new Date()
+
+const diff = today - startDate
+
+const days = Math.floor(diff / (1000*60*60*24))
+
+document.getElementById("loveCounter").innerText =
+days + " days of us ❤️"
+
+
+/* SCROLL ANIMATION */
+
+const faders = document.querySelectorAll(".fade")
+
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show")
+}
+})
+})
+
+faders.forEach(el=>observer.observe(el))
+
+</script>
 
 </body>
 </html>
